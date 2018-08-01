@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        ".gitignore": "git-commit",
+        "iostream": "cpp",
+        "string": "cpp"
+    }
+}
