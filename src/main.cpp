@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Entry.h"
+#include "Date.h"
 
 using namespace std;
 using namespace journal;
