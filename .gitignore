@@ -111,3 +111,6 @@ Temporary Items
 
 
 # End of https://www.gitignore.io/api/c,c++,macos,visualstudiocode
+
+# Custom
+project_content/
