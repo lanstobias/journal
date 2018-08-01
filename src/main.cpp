@@ -7,7 +7,9 @@ using namespace journal;
 
 int main()
 {
-    cout << "Hello, world." << endl;
+    Entry entry("Hej dagboken");
+
+    cout << entry.dateTime() << ": " << entry.getTitle() << endl;
 
     return 0;
 }

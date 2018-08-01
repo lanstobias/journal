@@ -10,6 +10,7 @@ namespace journal
     {
     private:
         // Member variables
+        Date dateCreated, lastUpdated;
         std::string title;
 
     public:
@@ -24,6 +25,7 @@ namespace journal
         void setTitle(std::string newTitle);
 
         // Public methods
+        std::string dateTime();
 
     private:
         // Private methods
