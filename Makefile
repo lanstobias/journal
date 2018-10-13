@@ -1,45 +1,50 @@
-# Modified from: https://hiltmon.com/blog/2013/07/03/a-simple-c-plus-plus-project-structure/
+CXX           := g++
+LD            := g++
+STANDARD      := -std=c++17
 
-EXE := journal
- 
-# Compiler options
-CC := g++
-CFLAGS := -g -Wall -Wextra -Weffc++
+FLAGS         := -Wall -Wextra -Wwrite-strings -Wno-parentheses -Wno-deprecated -Wpedantic -Warray-bounds -Weffc++
+CXXFLAGS      := $(FLAGS) $(STANDARD)
+LDFLAGS       := $(FLAGS)
 
-# Directories
-SRC_DIR := src
-BUILD_DIR := build
-TARGET := bin/$(EXE)
- 
-# Extensions
-SRC_EXT := cpp
+EXEC          := journal
+SRC           := $(wildcard src/*.cpp)
+OBJ           := $(SRC:src/%.cpp=build/%.o)
+INC           := -I include
 
-# Files
-SOURCES := $(shell find $(SRC_DIR) -type f -name *.$(SRC_EXT))
-OBJECTS := $(patsubst $(SRC_DIR)/%,$(BUILD_DIR)/%,$(SOURCES:.$(SRC_EXT)=.o))
+EXEC_TEST     := test
+SRC_TEST      := $(wildcard test/*.cpp)
+OBJ_TEST      := $(filter-out build/main.o, $(OBJ)) $(SRC_TEST:test/%.cpp=build/%.o)
 
-# Dependencies
-LIB := 
-INC := -I include
+.SUFFIXES:
+.DELETE_ON_ERROR:
 
-$(TARGET): $(OBJECTS)
-	@echo " Linking..."
-	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
+# --------------------------------------------------------------
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.$(SRC_EXT)
-	@mkdir -p $(BUILD_DIR)
-	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
+.PHONY: all
+all: bin/$(EXEC)
 
-clean:
-	@echo " Cleaning..."; 
-	@echo " $(RM) -r $(BUILD_DIR) $(TARGET)"; $(RM) -r $(BUILD_DIR) $(TARGET)
+bin/$(EXEC): $(OBJ)
+	@$(LD) $(LDFLAGS) $^ -o $@ && echo "[OK]  $@"
 
-# Tests
-test:
-	$(CC) tests/test.$(SRC_EXT) $(INC) $(LIB) -o bin/test
+# --------------------------------------------------------------
 
-# Spikes
-spikes:
-	$(CC) $(CFLAGS) spikes/spike.$(SRC_EXT) $(INC) $(LIB) -o bin/spike
+.PHONY: test
+test: bin/$(EXEC_TEST)
 
-.PHONY: clean
+bin/$(EXEC_TEST): $(OBJ_TEST)
+	@$(LD) $(LDFLAGS) $^ -o $@ && echo "[OK]  $@"
+
+# --------------------------------------------------------------
+
+build/%.o: src/%.cpp
+	@$(CXX) $(CXXFLAGS) -c $< $(INC) -o $@ && echo "[OK]  $@"
+
+build/%.o: test/%.cpp
+	@$(CXX) $(CXXFLAGS) -c $< $(INC) -o $@ && echo "[OK]  $@"
+
+# --------------------------------------------------------------
+
+.PHONY: clean clear
+clean clear:
+	@rm -f bin/* && echo "[CL]  bin/"
+	@rm -f build/* && echo "[CL]  build/"
