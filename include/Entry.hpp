@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+#include "Date.hpp"
+
 class Entry
 {
 private:

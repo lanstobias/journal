@@ -1,4 +1,8 @@
 #pragma once
+#include <ctime>
+#include <locale>
+#include <string>
+
 class Date
 {
 private:
