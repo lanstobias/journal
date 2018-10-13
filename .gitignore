@@ -115,3 +115,4 @@ Temporary Items
 # Custom
 project_content/
 bin/
+.vscode/
