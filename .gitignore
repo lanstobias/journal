@@ -103,11 +103,7 @@ Temporary Items
 .apdisk
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vscode/
 
 
 # End of https://www.gitignore.io/api/c,c++,macos,visualstudiocode
@@ -115,4 +111,3 @@ Temporary Items
 # Custom
 project_content/
 bin/
-.vscode/
