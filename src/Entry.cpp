@@ -1,6 +1,5 @@
 #include "Entry.h"
 
-using namespace journal;
 using namespace std;
 
 // Contructors

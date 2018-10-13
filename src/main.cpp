@@ -3,7 +3,6 @@
 #include "Date.h"
 
 using namespace std;
-using namespace journal;
 
 int main()
 {

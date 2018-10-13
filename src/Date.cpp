@@ -1,7 +1,6 @@
 #include "Date.h"
 #include <string>
 
-using namespace journal;
 using namespace std;
 
 // Contructors
