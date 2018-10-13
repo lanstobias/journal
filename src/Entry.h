@@ -1,6 +1,3 @@
-#ifndef ENTRY_H
-#define ENTRY_H
-
 #include "Date.h"
 #include <string>
 
@@ -33,4 +30,3 @@ namespace journal
     };
 }
 
-#endif

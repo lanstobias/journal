@@ -1,6 +1,3 @@
-#ifndef DATE
-#define DATE
-
 #include <ctime>
 #include <locale>
 #include <string>
@@ -28,4 +25,3 @@ namespace journal
 
     };
 }
-#endif
