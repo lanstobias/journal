@@ -19,21 +19,6 @@ std::set<char> Menu::getValidInputs()
 }
 
 // Public methods
-void Menu::printItems()
-{
-    ostringstream os;
-    
-    os << "(n) Create " << bold("n") << "ew entry" << endl;
-    os << "(q) " << bold("Q") << "uit" << endl;
-    
-    cout << os.str();
-}
-
-void Menu::printHeader()
-{
-    cout << "----- Journal -----" << endl;
-}
-
 void Menu::print()
 {
     printHeader();
@@ -51,4 +36,20 @@ char Menu::getUserInput()
 char Menu::isValidInput(char input, set<char> validInput)
 {
     return this->input.isValid(input, validInput);
+}
+
+// Private methods
+void Menu::printItems()
+{
+    ostringstream os;
+    
+    os << "(n) Create " << bold("n") << "ew entry" << endl;
+    os << "(q) " << bold("Q") << "uit" << endl;
+    
+    cout << os.str();
+}
+
+void Menu::printHeader()
+{
+    cout << "----- Journal -----" << endl;
 }
