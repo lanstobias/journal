@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <pwd.h>
+#include <sstream>
+#include <iostream> // cout, cin
 
 using namespace std;
 
@@ -27,5 +29,15 @@ namespace Helpers
     void newline()
     {
         putchar('\n');
+    }
+    
+    string bold(string text)
+    {
+        const char ESC_CHAR = 27;
+        ostringstream os;
+        
+        os << ESC_CHAR << "[1m" << text << ESC_CHAR << "[0m";
+        
+        return os.str();
     }
 }
