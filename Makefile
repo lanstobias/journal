@@ -2,7 +2,8 @@ CXX           := g++
 LD            := g++
 STANDARD      := -std=c++17
 
-FLAGS         := -Wall -Wextra -Wwrite-strings -Wno-parentheses -Wno-deprecated -Wpedantic -Warray-bounds -Weffc++
+FLAGS         := -Wall -Wextra -Wwrite-strings -Wno-parentheses\
+				 -Wno-deprecated -Wpedantic -Warray-bounds -Weffc++
 CXXFLAGS      := $(FLAGS) $(STANDARD)
 LDFLAGS       := $(FLAGS)
 
