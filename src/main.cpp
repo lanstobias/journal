@@ -8,11 +8,13 @@
 #include "../include/Date.hpp"
 #include "../include/FileHandler.hpp"
 #include "../include/Journal.hpp"
+#include "../include/Menu.hpp"
 
 using namespace std;
 
 int main()
 {
+    Menu menu;
     // Create temporary filename
     // char tempFilename[L_tmpnam];
     // tmpnam(tempFilename);
@@ -28,8 +30,11 @@ int main()
 
     // outfile.close();
 
-    Journal journal;
-    journal.newEntry();
+    // Journal journal;
+    // journal.newEntry();
+    
+    menu.show();
+    system("read");
 
     return 0;
 }
