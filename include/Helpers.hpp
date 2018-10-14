@@ -5,4 +5,5 @@ namespace Helpers
 {
     std::string getUserHomePath();
     void clearScreen();
+    void newline();
 }

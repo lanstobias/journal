@@ -23,4 +23,9 @@ namespace Helpers
     {
         cout << "\033[2J\033[1;1H";
     }
+    
+    void newline()
+    {
+        putchar('\n');
+    }
 }
