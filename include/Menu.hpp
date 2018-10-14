@@ -15,11 +15,10 @@ public:
     
     std::set<char> getValidInputs();
     
-    void show();
-    
-private:
     void printItems();
     void printHeader();
     void print();
     char getUserInput();
+    void executeMenuChoice(char userInput);
+    char isValidInput(char input, std::set<char> validInput);
 };

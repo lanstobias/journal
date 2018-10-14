@@ -14,7 +14,7 @@ using namespace std;
 
 int main()
 {
-    Menu menu;
+    Journal journal;
     // Create temporary filename
     // char tempFilename[L_tmpnam];
     // tmpnam(tempFilename);
@@ -33,8 +33,7 @@ int main()
     // Journal journal;
     // journal.newEntry();
     
-    menu.show();
-    system("read");
+    journal.showMenu();
 
     return 0;
 }

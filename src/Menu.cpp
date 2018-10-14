@@ -18,23 +18,7 @@ std::set<char> Menu::getValidInputs()
     return validInputs;
 }
 
-// Public menthods
-void Menu::show()
-{
-    char userInput;
-    bool userInputIsValid = false;
-    
-    while (!userInputIsValid)
-    {
-        Helpers::clearScreen();
-        print();
-        
-        userInput = getUserInput();
-        userInputIsValid = input.isValid(userInput, validInputs);
-    }
-}
-
-// Private methods
+// Public methods
 void Menu::printItems()
 {
     ostringstream os;
@@ -62,4 +46,9 @@ char Menu::getUserInput()
 {
     cout << "Enter choice: ";
     return input.readSingleCharacter();
+}
+
+char Menu::isValidInput(char input, set<char> validInput)
+{
+    return this->input.isValid(input, validInput);
 }
