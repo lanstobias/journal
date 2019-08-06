@@ -4,6 +4,8 @@
 #include <sstream>
 #include <unistd.h>
 
+#include "boost/filesystem.hpp"
+
 #include "../include/Entry.hpp"
 #include "../include/Date.hpp"
 #include "../include/FileHandler.hpp"
@@ -11,6 +13,7 @@
 #include "../include/Menu.hpp"
 
 using namespace std;
+using namespace boost;
 
 int main()
 {

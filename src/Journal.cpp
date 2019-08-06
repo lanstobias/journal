@@ -9,40 +9,39 @@
 using namespace std;
 
 // Contructors
-Journal::Journal()
-{
+Journal::Journal() {
     setSavePath();
     initializeFileHandler();
 }
 
-Journal::Journal(string journalPath)
-{
+Journal::Journal(const string& journalPath) {
     this->path = journalPath;
     initializeFileHandler();
 }
 
 // Accessors
-string Journal::getPath()
-{
+string Journal::getPath() {
     return path;
 }
 
 // Mutators
 
 // Public methods
-void Journal::newEntry()
-{
-    cout << "New entry" << endl;
+void Journal::newEntry() {
+    Entry entry;
+    string pathToTempFile = fileHandler.createTempFile();
+    
+    writeTemplateToTempFile(pathToTempFile);
+    fileHandler.openFileWithEditor(pathToTempFile);
+
     system("read");
 }
 
-void Journal::showMenu()
-{
+void Journal::showMenu() {
     char userInput;
     bool userInputIsValid = false;
     
-    while (!userInputIsValid)
-    {
+    while (!userInputIsValid) {
         Helpers::clearScreen();
         menu.print();
         
@@ -50,32 +49,25 @@ void Journal::showMenu()
         userInputIsValid = menu.isValidInput(userInput, menu.getValidInputs());
     }
     
-    try
-    {
+    try {
         executeMenuChoice(userInput);
-    }
-    catch(const std::exception& e)
-    {
+    } catch(const std::exception& e) {
         std::cerr << e.what() << endl;
     }
 }
 
 // Private methods
-void Journal::setSavePath()
-{
+void Journal::setSavePath() {
     string finalDestination = "journal";
     this->path = Helpers::getUserHomePath() + "/" + finalDestination;
 }
 
-void Journal::initializeFileHandler()
-{
+void Journal::initializeFileHandler() {
     fileHandler.setDestinationPath(path);
 }
 
-void Journal::executeMenuChoice(char userChoice)
-{
-    switch (userChoice)
-    {
+void Journal::executeMenuChoice(char userChoice) {
+    switch (userChoice) {
         case 'n':
             Helpers::clearScreen();
             newEntry();
@@ -90,7 +82,10 @@ void Journal::executeMenuChoice(char userChoice)
     }
 }
 
-void Journal::exit()
-{
-    cout << "Bye" << endl;
+void Journal::exit() {
+    cout << "Bye bye" << endl;
+}
+
+void Journal::writeTemplateToTempFile(const string& filename) {
+    //outfile.open(filename);
 }

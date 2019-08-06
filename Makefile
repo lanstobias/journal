@@ -1,12 +1,22 @@
-CXX           := g++
-LD            := g++
-STANDARD      := -std=c++17
+# Boost C++ library
+ROOT_BOOST    := /usr/local/include/boost_1_64_0
+BOOST_INC     := ${BOOST_ROOT}/include
 
 FLAGS         := -Wall -Wextra -Wwrite-strings -Wno-parentheses\
 				 -Wno-deprecated -Wpedantic -Warray-bounds -Weffc++
-CXXFLAGS      := $(FLAGS) $(STANDARD)
-LDFLAGS       := $(FLAGS)
 
+# Compiler
+CXX           := g++
+CC			  := $(CXX)
+STANDARD      := -std=c++17
+CXXFLAGS      := $(FLAGS) $(STANDARD)
+
+# Linker
+LD            := g++
+LDFLAGS       := -I $(ROOT_BOOST) -lboost_filesystem
+LDLIBS		  +=
+
+# Application
 EXEC          := journal
 SRC           := $(wildcard src/*.cpp)
 OBJ           := $(SRC:src/%.cpp=build/%.o)

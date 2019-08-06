@@ -19,8 +19,7 @@ std::set<char> Menu::getValidInputs()
 }
 
 // Public methods
-void Menu::print()
-{
+void Menu::print() {
     printHeader();
     newline();
     printItems();

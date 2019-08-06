@@ -16,7 +16,7 @@ private:
 
 public:
     Journal();
-    Journal(std::string journalPath);
+    Journal(const std::string& journalPath);
 
     std::string getPath();
 
@@ -28,4 +28,5 @@ private:
     void initializeFileHandler();
     void executeMenuChoice(char userChoice);
     void exit();
+    void writeTemplateToTempFile(const std::string& filename);
 };
