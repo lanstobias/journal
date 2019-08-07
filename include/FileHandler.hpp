@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <fstream>
 
 #include <boost/filesystem/path.hpp>
 
@@ -9,7 +10,7 @@ class FileHandler
 {
 private:
     std::string destinationPath_;
-    std::ofstream temporaryFile_;
+    mutable std::ofstream temporaryFile_;
 
 public:
     /**
@@ -32,11 +33,7 @@ public:
      */
     std::string getDestinationPath();
 
-    /**
-     * @brief 
-     * 
-     */
-    std::ofstream* getPointerToTemporaryFile();
+    std::ofstream& temporaryFile() const;
 
     /**
      * @brief Set the Destination Path object

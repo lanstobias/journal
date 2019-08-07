@@ -23,6 +23,10 @@ string FileHandler::getDestinationPath() {
     return destinationPath_;
 }
 
+ofstream& FileHandler::temporaryFile() const {
+    return temporaryFile_;
+}
+
 // Mutators
 void FileHandler::setDestinationPath(string newDestinationPath) {
     destinationPath_ = newDestinationPath;
@@ -36,15 +40,8 @@ string FileHandler::createTempFile() {
     std::stringstream ssFilename;
     filesystem::path temporaryFilePath = filesystem::temp_directory_path();
     ssFilename << temporaryFilePath.native() << "test" << ".md";
-    string filename = ssFilename.str();
 
-    try {
-        temporaryFile_.open(filename);
-    } catch(ofstream::failure e) {
-        cerr << "Could not open file: " << filename << endl;
-    }
-
-    return filename;
+    return ssFilename.str();
 }
 
 void FileHandler::openFileWithEditor(string file) {
@@ -66,11 +63,11 @@ string FileHandler::readTempFile() {
 }
 
 void FileHandler::deleteTempFile() {
-    try {
-        temporaryFile_.close();
-    } catch(ofstream::failure e) {
-        cerr << "Could not close file";
-    }
+    //try {
+        //temporaryFile_.close();
+    //} catch(ofstream::failure e) {
+        //cerr << "Could not close file";
+    //}
 }
 
 

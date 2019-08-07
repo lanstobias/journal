@@ -13,8 +13,7 @@ using namespace Helpers;
 Menu::Menu() {}
 
 // Accessors
-std::set<char> Menu::getValidInputs()
-{
+std::set<char> Menu::getValidInputs() {
     return validInputs;
 }
 
@@ -26,20 +25,17 @@ void Menu::print() {
     newline();
 }
 
-char Menu::getUserInput()
-{
+char Menu::getUserInput() {
     cout << "Enter choice: ";
     return input.readSingleCharacter();
 }
 
-char Menu::isValidInput(char input, set<char> validInput)
-{
+char Menu::isValidInput(char input, set<char> validInput) {
     return this->input.isValid(input, validInput);
 }
 
 // Private methods
-void Menu::printItems()
-{
+void Menu::printItems() {
     ostringstream os;
     
     os << "(n) Create " << bold("n") << "ew entry" << endl;
@@ -48,7 +44,6 @@ void Menu::printItems()
     cout << os.str();
 }
 
-void Menu::printHeader()
-{
+void Menu::printHeader() {
     cout << "----- Journal -----" << endl;
 }

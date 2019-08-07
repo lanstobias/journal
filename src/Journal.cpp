@@ -1,6 +1,7 @@
 #include <string> // string
 #include <iostream> // cout
 #include <stdexcept> // invalid_argument()
+#include <fstream>
 
 #include "../include/Helpers.hpp"
 #include "../include/Journal.hpp"
@@ -30,6 +31,8 @@ string Journal::getPath() {
 void Journal::newEntry() {
     Entry entry;
     string pathToTempFile = fileHandler.createTempFile();
+
+    cout << "pathToTempFile: " << pathToTempFile << endl;
     
     writeTemplateToTempFile(pathToTempFile);
     fileHandler.openFileWithEditor(pathToTempFile);
@@ -87,5 +90,13 @@ void Journal::exit() {
 }
 
 void Journal::writeTemplateToTempFile(const string& filename) {
-    //outfile.open(filename);
+    try {
+        cout << "Opening file " << filename << endl;
+        fileHandler.temporaryFile().open(filename);
+    } catch(ofstream::failure e) {
+        cerr << "Could not open file: " << filename << endl;
+    }
+
+    fileHandler.temporaryFile() << "Dagens datum..\n";
+    fileHandler.temporaryFile().close();
 }
