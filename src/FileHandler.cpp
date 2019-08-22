@@ -4,7 +4,7 @@
 #include <iostream>
 #include <time.h>
 
-#include <boost/filesystem/path.hpp>
+#include <boost/filesystem.hpp>
 #include <boost/process.hpp>
 #include <boost/system/error_code.hpp>
 
@@ -12,7 +12,6 @@
 
 using namespace std;
 using namespace boost;
-
 
 // Contructors
 FileHandler::FileHandler() {}

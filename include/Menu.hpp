@@ -7,7 +7,7 @@
 class Menu
 {
 private:
-    std::set<char> validInputs{'n', 'q'};
+    std::set<char> validInputs_ {'n', 'q'};
     UserInput input;
 
 public:

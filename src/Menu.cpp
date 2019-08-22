@@ -14,7 +14,7 @@ Menu::Menu() {}
 
 // Accessors
 std::set<char> Menu::getValidInputs() {
-    return validInputs;
+    return validInputs_;
 }
 
 // Public methods
