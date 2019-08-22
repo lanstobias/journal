@@ -3,21 +3,6 @@ project(journal_project)
 set(CMAKE_CXX_STANDARD 17)
 
 ###############################################################################
-## File globbing
-file(GLOB_RECURSE sources src/*.cpp)
-file(GLOB_RECURSE includes includes/*.hpp)
-file(GLOB_RECURSE tests test/*.cpp)
-
-###############################################################################
-## Target definitions
-
-# Add the data to the target, so it becomes visible in some IDE
-add_executable(journal ${sources})
-
-# Compiler flags
-target_compile_options(journal PUBLIC -Wall -Wfloat-conversion)
-
-###############################################################################
 ## Dependencies
 
 # Boost
@@ -27,16 +12,50 @@ INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
 # Catch2
 add_subdirectory(third_party/catch2)
 
-## Link targets
-target_link_libraries(journal
-    PUBLIC
-        ${Boost_LIBRARIES}
+# Libraries
+add_library(Libs SHARED
+    src/Menu.cpp
+    src/UserInput.cpp
+    src/Helpers.cpp
 )
 
 #############################################
 ## Unit tests
 enable_testing()
-add_executable(unit_tests ${tests})
-target_link_libraries(unit_tests Catch2::Test)
-
 add_test(test_all unit_tests)
+
+###############################################################################
+## Create executables
+
+# Main program
+add_executable(journal
+    src/Date.cpp
+    src/Entry.cpp
+    src/FileHandler.cpp
+    src/Helpers.cpp
+    src/Journal.cpp
+    src/Menu.cpp
+    src/UserInput.cpp
+    src/main.cpp
+)
+target_compile_options(journal PUBLIC -Wall -Wfloat-conversion)
+target_include_directories(journal PRIVATE ${PROJECT_SOURCE_DIR}/include)
+
+# Test program
+add_executable(unit_tests
+    test/test.cpp    
+    test/testMenu.cpp
+)
+
+#############################################
+## Link
+target_link_libraries(journal
+    Libs
+    ${Boost_LIBRARIES}
+)
+
+# TODO: Fix linking of header files for tests
+target_link_libraries(unit_tests
+    Libs
+    Catch2::Test
+)
