@@ -1,6 +1,3 @@
-
-# Created by https://www.gitignore.io/api/c,c++,macos,visualstudiocode
-
 ### C ###
 # Prerequisites
 *.d
@@ -121,16 +118,14 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+build/
 
 ### CMake Patch ###
 # External projects
 *-prefix/
 
-# End of https://www.gitignore.io/api/cmake
-
-# End of https://www.gitignore.io/api/c,c++,macos,visualstudiocode
-
 # Custom
 project_content/
 bin/
 *.ccls-cach/
+
